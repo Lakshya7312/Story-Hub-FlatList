@@ -49,6 +49,14 @@ export default class ReadStoryScreen extends Component {
     return (
       <FlatList data={this.state.allStories}
         renderItem={({ item }) => {
+          this.updateSearch();
+      this.retrieveStories();
+        }}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReached={this.retireveStories()}
+        onEndReachedThreshold={0.7}
+      />
+          
           <View style={styles.container}>
             <View>
               <SearchBar
@@ -82,11 +90,6 @@ export default class ReadStoryScreen extends Component {
                 ))}
             </View>
           </View>
-        }}
-        keyExtractor={(item, index) => index.toString()}
-        onEndReached={this.retireveStories()}
-        onEndReachedThreshold={0.7}
-      />
     );
   }
 }
